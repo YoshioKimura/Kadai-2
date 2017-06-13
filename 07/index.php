@@ -19,7 +19,7 @@
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
-<form method="post" action="insert.php">
+<form method="post" action="insert.php" enctype="multipart/form-data">
   <div class="jumbotron">
    <fieldset>
     <legend>オススメの書籍!!</legend>
@@ -27,10 +27,10 @@
      <label>url：<input type="url" name="url"></label><br>
      <label><textArea name="naiyou" rows="4" cols="40"></textArea></label><br>
 
-     <form action="insert.php" method="post" enctype="multipart/form-data">
+<!--      <form action="insert.php" method="post" > -->
 	<label for="upload">画像のアップロード</label>
-	<input type="file" name="image1" /><br />
-</form>
+	<input type="file" name="image1" id="upload"/><br />
+<!-- </form> -->
 <br>
      <input type="submit" value="送信">
     </fieldset>
