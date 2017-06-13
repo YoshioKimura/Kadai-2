@@ -5,6 +5,10 @@ $name = $_POST["name"];
 $url= $_POST["url"];
 $naiyou= $_POST["naiyou"];
 
+if(isset($_FILES["image1"])){
+  $img=file_get_contents($_FILES["image1"]["tmp_name"]);
+}
+//ポストされた画像を$img変数に入れる
 
 //2. DB接続します
 try {
@@ -16,10 +20,11 @@ try {
 
 //３．データ登録SQL作成
 $stmt = $pdo->prepare("INSERT INTO gs_bm_table(id, name, url, naiyou,
-indate )VALUES(NULL, :name, :url, :naiyou, sysdate())");
+indate,image1 )VALUES(NULL, :name, :url, :naiyou, sysdate(),:img)");
 $stmt->bindValue(':name', $name, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 $stmt->bindValue(':url', $url, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
 $stmt->bindValue(':naiyou', $naiyou, PDO::PARAM_STR);  //Integer（数値の場合 PDO::PARAM_INT)
+$stmt->bindValue(':img', $img, PDO::PARAM_STR);
 $status = $stmt->execute();
 
 //４．データ登録処理後
